@@ -894,6 +894,36 @@ export class GameEngine {
   // ==========================================
   // MINIONS AI, AGGRO, KITING & BUSH DROP
   // ==========================================
+  private getMinionEnemies(team: Team): any[] {
+    const list: any[] = [];
+    const opposingTeam: Team = team === 'blue' ? 'red' : 'blue';
+    const opposingChamp = team === 'blue' ? this.enemyChampion : this.player;
+
+    // 1. Enemy Minions first (minions prioritize fighting each other!)
+    this.minions
+      .filter((m) => m.team === opposingTeam && !m.isDead)
+      .forEach((m) => list.push(m));
+
+    // 2. Enemy Turrets
+    this.turrets
+      .filter((t) => t.team === opposingTeam && !t.isDead)
+      .forEach((t) => list.push(t));
+
+    // 3. Enemy Nexus
+    const enemyNexus = team === 'blue' ? this.nexuses.red : this.nexuses.blue;
+    if (enemyNexus && !enemyNexus.isDead) {
+      list.push(enemyNexus);
+    }
+
+    // 4. Opposing Champion (only if alive and not in bush)
+    if (opposingChamp && !opposingChamp.isDead && !this.isUnitInBush(opposingChamp)) {
+      list.push(opposingChamp);
+    }
+
+    // NOTE: NEVER return neutral monsters (Blue Buff, Red Buff, Dragon, Baron) or target dummy!
+    return list;
+  }
+
   private updateMinions(dt: number) {
     this.minions = this.minions.filter((m) => !m.isDead);
 
@@ -928,11 +958,12 @@ export class GameEngine {
         }
       }
 
-      // Check current target validity
+      // Check current target validity (NEVER attack neutral jungle monsters)
       let target: any = null;
       if (minion.targetUnitId) {
         target = this.findUnitById(minion.targetUnitId, minion.targetUnitType);
-        if (!target || target.isDead || target.team === minion.team) {
+        const isMonster = target && (target.buffType || target.type === 'blue_buff' || target.type === 'red_buff' || target.type === 'dragon' || target.type === 'baron');
+        if (!target || target.isDead || target.team === minion.team || isMonster) {
           minion.targetUnitId = null;
           minion.targetUnitType = null;
           target = null;
@@ -952,13 +983,17 @@ export class GameEngine {
         }
       }
 
-      // If still no target, scan for nearby enemies within 500 units
+      // If still no target, scan for nearby enemies strictly along the lane (NEVER monsters)
       if (!target) {
-        const enemies = this.getEnemiesOfTeam(minion.team);
-        let closestDist = 500;
+        const enemies = this.getMinionEnemies(minion.team);
+        let closestDist = 420;
         let bestTarget: any = null;
 
-        enemies.forEach((enemy) => {
+        // Prioritize enemy minions first if any are in sight
+        const nearbyMinions = enemies.filter((e) => e.type === 'melee' || e.type === 'ranged' || e.type === 'cannon');
+        const candidatePool = nearbyMinions.length > 0 ? nearbyMinions : enemies;
+
+        candidatePool.forEach((enemy) => {
           const d = Math.hypot(enemy.x - minion.x, enemy.y - minion.y);
           if (d < closestDist) {
             closestDist = d;
@@ -1014,9 +1049,40 @@ export class GameEngine {
           minion.y += Math.sin(angle) * minion.speed * dt;
         }
       } else {
-        // March along mid lane toward enemy nexus!
-        const dest = minion.team === 'blue' ? this.nexuses.red : this.nexuses.blue;
-        const angle = Math.atan2(dest.y - minion.y, dest.x - minion.x);
+        // March along mid lane waypoints toward enemy base/nexus!
+        const waypoints = minion.team === 'blue'
+          ? [
+              { x: 550, y: 2450 },
+              { x: 950, y: 2050 },
+              { x: 1250, y: 1750 },
+              { x: 1500, y: 1500 },
+              { x: 1750, y: 1250 },
+              { x: 2050, y: 950 },
+              { x: 2450, y: 550 },
+            ]
+          : [
+              { x: 2450, y: 550 },
+              { x: 2050, y: 950 },
+              { x: 1750, y: 1250 },
+              { x: 1500, y: 1500 },
+              { x: 1250, y: 1750 },
+              { x: 950, y: 2050 },
+              { x: 550, y: 2450 },
+            ];
+
+        // Find next waypoint along the mid lane diagonal
+        let nextWp = waypoints[waypoints.length - 1];
+        for (const wp of waypoints) {
+          const isAhead = minion.team === 'blue'
+            ? (wp.x > minion.x + 40 || wp.y < minion.y - 40)
+            : (wp.x < minion.x - 40 || wp.y > minion.y + 40);
+          if (isAhead) {
+            nextWp = wp;
+            break;
+          }
+        }
+
+        const angle = Math.atan2(nextWp.y - minion.y, nextWp.x - minion.x);
         minion.x += Math.cos(angle) * minion.speed * dt;
         minion.y += Math.sin(angle) * minion.speed * dt;
       }
