@@ -9,7 +9,7 @@ export const CHAMPION_PRESETS: Record<string, Omit<Champion, 'team' | 'x' | 'y'>
     name: 'Garen',
     nameKr: '가렌',
     titleKr: '데마시아의 힘',
-    portraitUrl: '/src/assets/images/champion_garen_portrait_1793073874845.jpg',
+    portraitUrl: '/images/champion_garen.jpg',
     radius: 34,
     stats: {
       hp: 690,
@@ -150,7 +150,7 @@ export const CHAMPION_PRESETS: Record<string, Omit<Champion, 'team' | 'x' | 'y'>
     name: 'Ahri',
     nameKr: '아리',
     titleKr: '구미호',
-    portraitUrl: '/src/assets/images/champion_ahri_portrait_1793073874831.jpg',
+    portraitUrl: '/images/champion_ahri.jpg',
     radius: 30,
     stats: {
       hp: 570,
@@ -291,7 +291,7 @@ export const CHAMPION_PRESETS: Record<string, Omit<Champion, 'team' | 'x' | 'y'>
     name: 'Ashe',
     nameKr: '애쉬',
     titleKr: '서리 궁수',
-    portraitUrl: '/src/assets/images/champion_ashe_portrait_1793073874601.jpg',
+    portraitUrl: '/images/champion_ashe.jpg',
     radius: 30,
     stats: {
       hp: 610,
@@ -432,7 +432,7 @@ export const CHAMPION_PRESETS: Record<string, Omit<Champion, 'team' | 'x' | 'y'>
     name: 'Yasuo',
     nameKr: '야스오',
     titleKr: '용서받지 못한 자',
-    portraitUrl: '',
+    portraitUrl: '/images/champion_yasuo.svg',
     radius: 32,
     stats: {
       hp: 590,
@@ -573,7 +573,7 @@ export const CHAMPION_PRESETS: Record<string, Omit<Champion, 'team' | 'x' | 'y'>
     name: 'Lux',
     nameKr: '럭스',
     titleKr: '광명의 소녀',
-    portraitUrl: '',
+    portraitUrl: '/images/champion_lux.svg',
     radius: 30,
     stats: {
       hp: 560,
@@ -714,7 +714,7 @@ export const CHAMPION_PRESETS: Record<string, Omit<Champion, 'team' | 'x' | 'y'>
     name: 'Lee Sin',
     nameKr: '리 신',
     titleKr: '눈먼 수도승',
-    portraitUrl: '',
+    portraitUrl: '/images/champion_leesin.svg',
     radius: 32,
     stats: {
       hp: 645,

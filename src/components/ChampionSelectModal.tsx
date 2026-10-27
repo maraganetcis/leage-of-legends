@@ -28,7 +28,7 @@ export const ChampionSelectModal: React.FC<ChampionSelectModalProps> = ({
       title: '데마시아의 힘',
       role: '전사 / 탱커',
       icon: '⚔️',
-      image: '/src/assets/images/champion_garen_portrait_1793073874845.jpg',
+      image: '/images/champion_garen.jpg',
       difficulty: '초급 (쉬움)',
       color: 'from-blue-900 to-amber-950',
     },
@@ -38,7 +38,7 @@ export const ChampionSelectModal: React.FC<ChampionSelectModalProps> = ({
       title: '구미호',
       role: '마법사 / 암살자',
       icon: '🔮',
-      image: '/src/assets/images/champion_ahri_portrait_1793073874831.jpg',
+      image: '/images/champion_ahri.jpg',
       difficulty: '중급 (보통)',
       color: 'from-pink-900 to-purple-950',
     },
@@ -48,7 +48,7 @@ export const ChampionSelectModal: React.FC<ChampionSelectModalProps> = ({
       title: '서리 궁수',
       role: '원거리 딜러',
       icon: '🏹',
-      image: '/src/assets/images/champion_ashe_portrait_1793073874601.jpg',
+      image: '/images/champion_ashe.jpg',
       difficulty: '초급 (쉬움)',
       color: 'from-cyan-900 to-blue-950',
     },
@@ -58,7 +58,7 @@ export const ChampionSelectModal: React.FC<ChampionSelectModalProps> = ({
       title: '용서받지 못한 자',
       role: '근접 딜러 / 전사',
       icon: '🌪️',
-      image: null,
+      image: '/images/champion_yasuo.svg',
       difficulty: '상급 (숙련)',
       color: 'from-sky-900 to-indigo-950',
     },
@@ -68,7 +68,7 @@ export const ChampionSelectModal: React.FC<ChampionSelectModalProps> = ({
       title: '광명의 소녀',
       role: '마법사 / 포킹',
       icon: '✨',
-      image: null,
+      image: '/images/champion_lux.svg',
       difficulty: '초급 (쉬움)',
       color: 'from-amber-900 to-rose-950',
     },
@@ -78,7 +78,7 @@ export const ChampionSelectModal: React.FC<ChampionSelectModalProps> = ({
       title: '눈먼 수도승',
       role: '전사 / 암살자',
       icon: '👊',
-      image: null,
+      image: '/images/champion_leesin.svg',
       difficulty: '상급 (숙련)',
       color: 'from-amber-950 to-orange-950',
     },
@@ -87,22 +87,37 @@ export const ChampionSelectModal: React.FC<ChampionSelectModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md p-4 overflow-y-auto">
       <div className="bg-slate-950 border border-amber-600/50 rounded-3xl w-full max-w-5xl shadow-2xl overflow-hidden text-slate-100 flex flex-col font-sans my-auto max-h-[92vh]">
-        {/* Banner Header with Summoner's Rift artwork */}
+        {/* Banner Header with Summoner's Rift artwork & League Hextech Logo */}
         <div className="relative h-36 overflow-hidden border-b border-amber-600/30 shrink-0">
           <img
-            src="/src/assets/images/lol_summoners_rift_banner_1793073874050.jpg"
+            src="/images/rift_banner.jpg"
             alt="Summoners Rift"
             className="w-full h-full object-cover object-center filter brightness-90"
+            onError={(e) => {
+              (e.currentTarget as HTMLImageElement).src = '/images/lol_summoners_rift_banner_1793073874050.jpg';
+            }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent" />
           <div className="absolute bottom-3 left-6 right-6 flex items-end justify-between">
-            <div>
-              <h1 className="text-2xl font-extrabold font-cinzel text-amber-300 drop-shadow-md">
-                LEAGUE OF LEGENDS WEB
-              </h1>
-              <p className="text-xs text-slate-300">
-                웹 브라우저에서 바로 즐기는 정통 소환사의 협곡 MOBA
-              </p>
+            <div className="flex items-center gap-3.5">
+              <img
+                src="/favicon.svg"
+                alt="League Emblem Logo"
+                className="w-14 h-14 drop-shadow-[0_0_12px_rgba(245,211,107,0.7)] transition-transform hover:scale-105"
+              />
+              <div>
+                <div className="flex items-center gap-2">
+                  <h1 className="text-2xl font-black font-cinzel text-amber-300 drop-shadow-md tracking-wider">
+                    LEAGUE OF LEGENDS
+                  </h1>
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/50 font-mono-numbers uppercase tracking-wider">
+                    Web Edition
+                  </span>
+                </div>
+                <p className="text-xs text-slate-300 mt-0.5">
+                  웹 브라우저에서 바로 즐기는 정통 소환사의 협곡 MOBA
+                </p>
+              </div>
             </div>
             {/* Dedicated How To Play Guide Button */}
             <button

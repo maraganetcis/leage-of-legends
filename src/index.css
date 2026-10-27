@@ -37,3 +37,23 @@
   box-shadow: 0 0 15px rgba(255, 75, 75, 0.4);
 }
 
+/* Netlify Badge & Snippet Auto-Removal */
+.netlify-badge,
+[data-netlify-badge],
+#netlify-badge,
+.netlify-banner,
+a[href*="netlify.com"][class*="badge"],
+a[href*="netlify.com"][target="_blank"]:has(svg),
+iframe[src*="netlify"],
+div[class*="netlify-badge"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  position: absolute !important;
+  clip: rect(0, 0, 0, 0) !important;
+  z-index: -9999 !important;
+}
+

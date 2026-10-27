@@ -70,10 +70,15 @@ export const HUD: React.FC<HUDProps> = ({
       {/* ======================================================== */}
       <div className="flex items-center justify-between w-full pointer-events-auto">
         {/* Left: Player Profile Brief & Net Gold */}
-        <div className="flex items-center gap-3 bg-slate-950/85 backdrop-blur-md px-4 py-2 rounded-xl border border-amber-600/30 shadow-lg">
+        <div className="flex items-center gap-3 bg-slate-950/85 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-amber-600/30 shadow-lg">
+          <img
+            src="/favicon.svg"
+            alt="LoL Crest"
+            className="w-7 h-7 drop-shadow-[0_0_8px_rgba(245,211,107,0.5)]"
+          />
           <div className="flex items-center gap-2">
-            <span className="text-amber-400 font-bold font-cinzel text-lg">{player.nameKr}</span>
-            <span className="text-xs text-slate-400">Lv.{player.level}</span>
+            <span className="text-amber-400 font-bold font-cinzel text-base tracking-wide">{player.nameKr}</span>
+            <span className="text-xs text-slate-400 bg-slate-800/80 px-1.5 py-0.5 rounded font-mono-numbers">Lv.{player.level}</span>
           </div>
           <div className="h-4 w-px bg-slate-700" />
           <div className="flex items-center gap-1.5 text-amber-300 font-mono-numbers font-bold text-sm">

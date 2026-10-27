@@ -117,17 +117,39 @@ export class GameEngine {
   }
 
   private loadImages() {
-    const garenImg = new Image();
-    garenImg.src = '/src/assets/images/champion_garen_portrait_1793073874845.jpg';
-    this.championImages['garen'] = garenImg;
+    const champPaths: Record<string, string[]> = {
+      garen: [
+        '/images/champion_garen.jpg',
+        '/images/champion_garen_portrait_1793073874845.jpg',
+        '/src/assets/images/champion_garen_portrait_1793073874845.jpg',
+      ],
+      ahri: [
+        '/images/champion_ahri.jpg',
+        '/images/champion_ahri_portrait_1793073874831.jpg',
+        '/src/assets/images/champion_ahri_portrait_1793073874831.jpg',
+      ],
+      ashe: [
+        '/images/champion_ashe.jpg',
+        '/images/champion_ashe_portrait_1793073874601.jpg',
+        '/src/assets/images/champion_ashe_portrait_1793073874601.jpg',
+      ],
+      yasuo: ['/images/champion_yasuo.svg'],
+      lux: ['/images/champion_lux.svg'],
+      leesin: ['/images/champion_leesin.svg'],
+    };
 
-    const ahriImg = new Image();
-    ahriImg.src = '/src/assets/images/champion_ahri_portrait_1793073874831.jpg';
-    this.championImages['ahri'] = ahriImg;
-
-    const asheImg = new Image();
-    asheImg.src = '/src/assets/images/champion_ashe_portrait_1793073874601.jpg';
-    this.championImages['ashe'] = asheImg;
+    Object.entries(champPaths).forEach(([champId, paths]) => {
+      const img = new Image();
+      let pathIdx = 0;
+      img.onerror = () => {
+        pathIdx++;
+        if (pathIdx < paths.length) {
+          img.src = paths[pathIdx];
+        }
+      };
+      img.src = paths[0];
+      this.championImages[champId] = img;
+    });
   }
 
   public initGame() {

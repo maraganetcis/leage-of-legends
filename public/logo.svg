@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 90" width="460" height="90">
+  <defs>
+    <linearGradient id="logoGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF5D6" />
+      <stop offset="30%" stop-color="#F0D078" />
+      <stop offset="70%" stop-color="#C89B3C" />
+      <stop offset="100%" stop-color="#785A28" />
+    </linearGradient>
+    <linearGradient id="goldAccent" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F0D078" />
+      <stop offset="100%" stop-color="#785A28" />
+    </linearGradient>
+    <radialGradient id="hextechGlow2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00F9FF" stop-opacity="0.9" />
+      <stop offset="60%" stop-color="#0397AB" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#0A1428" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="gemGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38E1FF" />
+      <stop offset="50%" stop-color="#0AC8B9" />
+      <stop offset="100%" stop-color="#036070" />
+    </linearGradient>
+    <filter id="logoGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Left Side: Emblazoned Hextech Crest -->
+  <g transform="translate(6, 5) scale(0.62)">
+    <circle cx="64" cy="64" r="60" fill="#091428" stroke="url(#logoGold)" stroke-width="3" />
+    <circle cx="64" cy="64" r="54" fill="#0A1428" stroke="url(#goldAccent)" stroke-width="1.5" opacity="0.8" />
+    <circle cx="64" cy="64" r="46" fill="url(#hextechGlow2)" />
+    <!-- Wings -->
+    <path d="M 64 14 C 50 18 24 38 20 66 C 18 78 24 94 36 104 C 32 94 32 80 38 68 C 42 60 52 50 64 46 Z" fill="url(#logoGold)" opacity="0.9" />
+    <path d="M 64 14 C 78 18 104 38 108 66 C 110 78 104 94 92 104 C 96 94 96 80 90 68 C 86 60 76 50 64 46 Z" fill="url(#goldAccent)" opacity="0.9" />
+    <!-- Shield & L -->
+    <path d="M 64 22 L 96 40 L 86 86 L 64 112 L 42 86 L 32 40 Z" fill="#05101E" stroke="url(#logoGold)" stroke-width="2.5" />
+    <path d="M 48 38 L 60 38 L 60 78 L 82 78 L 80 88 L 48 88 Z" fill="url(#logoGold)" filter="url(#logoGlow)" />
+    <polygon points="64,22 70,29 64,36 58,29" fill="url(#gemGradient2)" stroke="#FFF" stroke-width="0.8" />
+  </g>
+
+  <!-- Right Side: Cinematic League Typography -->
+  <!-- Main Title: LEAGUE OF LEGENDS -->
+  <text x="100" y="44" font-family="'Cinzel', 'Times New Roman', serif" font-size="28" font-weight="900" letter-spacing="4" fill="url(#logoGold)" filter="url(#logoGlow)">
+    LEAGUE <tspan font-size="20" fill="#F0D078">OF</tspan> LEGENDS
+  </text>
+  
+  <!-- Subtitle: WEB EDITION & GOLD DIVIDERS -->
+  <line x1="100" y1="56" x2="190" y2="56" stroke="url(#logoGold)" stroke-width="1.5" />
+  <circle cx="200" cy="56" r="2.5" fill="#38E1FF" />
+  <text x="212" y="61" font-family="'Plus Jakarta Sans', 'Segoe UI', sans-serif" font-size="12" font-weight="800" letter-spacing="3" fill="#A09B8C">
+    소환사의 협곡 WEB
+  </text>
+  <circle cx="370" cy="56" r="2.5" fill="#38E1FF" />
+  <line x1="380" y1="56" x2="445" y2="56" stroke="url(#logoGold)" stroke-width="1.5" />
+</svg>
