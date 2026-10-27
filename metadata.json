@@ -1,0 +1,7 @@
+{
+  "name": "League of Legends Web - 롤 웹 에디션",
+  "description": "웹 브라우저에서 바로 즐기는 정통 MOBA 리그 오브 레전드! 튜토리얼, 챔피언(가렌, 아리, 애쉬), 스킬샷, 미니언 막타, 아이템 상점, 포탑, 바론/드래곤, 사운드 완비.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
